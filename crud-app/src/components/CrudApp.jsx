@@ -40,11 +40,18 @@ function CrudApp() {
    }
 
    const updateData = (data) => {
-
+      const newData = db.map(el => el.id === data.id ? data : el);
+      setDb(newData);
    }
 
    const deleteData = (id) => {
-
+      const isDelete = window.confirm(`¿Estás seguro de eliminar el registro con el id ${id}?`)
+      if (isDelete) {
+         const newData = db.filter(el => el.id !== id);
+         setDb(newData);
+      } else {
+         return;
+      }
    }
 
    return (
